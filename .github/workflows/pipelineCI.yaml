@@ -71,19 +71,10 @@ jobs:
       - name: Instalar Node
         uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 20
 
       - name: Instalar dependências
         run: npm install
-
-      - name: Gerar artefato
-        run: tar -czf app.tar.gz .
-
-      - name: Publicar artefato
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-build
-          path: app.tar.gz
 
   test:
 
@@ -91,18 +82,10 @@ jobs:
     needs: build
 
     steps:
-      - name: Baixar artefato
-        uses: actions/download-artifact@v4
-        with:
-          name: app-build
-
-      - name: Extrair artefato
-        run: tar -xzf app.tar.gz
-
       - name: Instalar Node
         uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 20
 
       - name: Instalar dependências
         run: npm install
