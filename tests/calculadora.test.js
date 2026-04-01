@@ -1,7 +1,7 @@
 const calculadora = require('../src/calculadora');
 
-test('soma 2 + 3 = 5', () => {
-  expect(calculadora.soma(2, 3)).toBe(5);
+test('soma 3 + 3 = 6', () => {
+  expect(calculadora.soma(3, 3)).toBe(6);
 });
 
 test('multiplicação 2 * 3 = 6', () => {
