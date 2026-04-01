@@ -93,6 +93,15 @@ jobs:
       - name: Instalar dependências
         run: npm install
 
+      - name: Gerar artefato
+        run: zip -r app.zip .
+
+      - name: Publicar artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-build
+          path: app.zip
+
   test:
     needs: build
     strategy:
@@ -103,6 +112,15 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
+
+      - name: Baixar artefato
+        uses: actions/dowload-artifact@v4
+        with:
+          name: app-build
+
+      - name: Extrair artefato
+        run: unzip app.zip
+        
       - name: Checkout código
         uses: actions/checkout@v4
 
