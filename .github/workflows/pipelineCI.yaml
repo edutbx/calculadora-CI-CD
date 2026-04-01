@@ -12,25 +12,25 @@ on:
 jobs:
 
   security:
-   runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-  steps:
-    - name: Checkout código
-      uses: actions/checkout@v4
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
 
-    - name: Instalar Node
-      uses: actions/setup-node@v4
-      with:
-         node-version: 24
-      
-    - name: Instalar dependências
-      run: npm install  
+      - name: Instalar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
 
-    - name: Scan for secrets
-      uses: gitleaks/gitleaks-action@v2
+      - name: Instalar dependências
+        run: npm install
 
-    - name: Verificar vulnerabilidade
-      run: npm audit --audit-level=high
+      - name: Scan for secrets
+        uses: gitleaks/gitleaks-action@v2
+
+      - name: Verificar vulnerabilidade
+        run: npm audit --audit-level=high
 
   quality:
     runs-on: ubuntu-latest
