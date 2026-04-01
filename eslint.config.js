@@ -1,7 +1,7 @@
-import js from "@eslint/js";
-import globals from "globals";
+const js = require("@eslint/js");
+const globals = require("globals");
 
-export default [
+module.exports = [
   {
     ignores: ["node_modules/**", "coverage/**", "dist/**"]
   },
@@ -16,6 +16,12 @@ export default [
       ...js.configs.recommended.rules,
       "no-unused-vars": "warn",
       "no-console": "warn"
+    }
+  },
+  {
+    files: ["tests/**/*.js", "**/*.test.js"],
+    languageOptions: {
+      globals: globals.jest
     }
   }
 ];
